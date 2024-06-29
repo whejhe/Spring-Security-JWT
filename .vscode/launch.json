@@ -2,13 +2,21 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SecurityConfig",
+            "request": "launch",
+            "mainClass": "com.app.config.SecurityConfig",
+            "projectName": "springsecurityapp"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-SpringsecurityappApplication<springsecurityapp>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.app.SpringsecurityappApplication",
             "projectName": "springsecurityapp",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=64328 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=springsecurityapp"
         }
     ]
 }

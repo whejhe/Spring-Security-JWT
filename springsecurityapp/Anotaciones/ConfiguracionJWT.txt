@@ -1,4 +1,0 @@
-video: https://www.youtube.com/watch?v=IPWBQDMIYkc
-
-0 - TestAuthController
-1 - SecurityConfig

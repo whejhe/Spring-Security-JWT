@@ -1,7 +1,7 @@
 package com.app.config;
 
-import java.util.List;
-import java.util.ArrayList;
+// import java.util.List;
+// import java.util.ArrayList;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,14 +15,17 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.core.userdetails.User;
+// import org.springframework.security.core.userdetails.UserDetails;
+// import org.springframework.security.core.userdetails.UserDetailsService;
 // import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+// import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.app.service.UserDetailService;
 
 @SuppressWarnings("deprecation")//Elimina esto en un futuro
 @Configuration
@@ -41,10 +44,12 @@ public class SecurityConfig {
     //         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //No guarda la sesion en memoria
     //         .authorizeHttpRequests(http -> {
     //             // Configurar los Endpoints publicos
-    //             http.requestMatchers(HttpMethod.GET, "/auth/hello").permitAll();
+    //             http.requestMatchers(HttpMethod.GET, "/auth/get").permitAll();
                 
     //             // Configurar los Endpoints privados
-    //             http.requestMatchers(HttpMethod.GET, "/auth/hello-secured").hasAuthority("READ");
+    //             http.requestMatchers(HttpMethod.POST, "/auth/post").hasAuthority("CREATE");
+    //             http.requestMatchers(HttpMethod.DELETE, "/auth/delete").hasAuthority("DELETE");
+
                 
     //             // Configurar el resto de Endpoints -  NO ESPECIFICADOS
     //             http.anyRequest().denyAll(); // Rechaza todos los Endpoints no especificados
@@ -69,16 +74,19 @@ public class SecurityConfig {
     }
     
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider(UserDetailService userDetailService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(null);
+        provider.setUserDetailsService(userDetailService);
         return provider;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // Cambiar por BCryptPasswordEncoder
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
+
+    // public static void main(String[] args) {
+    //     System.out.println(new BCryptPasswordEncoder().encode("1234"));
+    // }
 }
