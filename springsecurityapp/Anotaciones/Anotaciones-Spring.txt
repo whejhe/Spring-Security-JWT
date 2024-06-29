@@ -1,0 +1,98 @@
+@Configuration: Indica que la clase contiene métodos para definir beans que 
+                serán gestionados por el contenedor de Spring.
+
+@Bean:  Define un bean que será gestionado por Spring. Se usa dentro de una 
+        clase marcada con @Configuration.
+
+@Component: Marca una clase como un bean administrado por Spring. Es una 
+            generalización de @Service, @Repository y @Controller.    
+
+@Service: Especialización de @Component para indicar que una clase es un servicio.
+
+@Repository: Especialización de @Component para indicar que una clase es un repositorio (DAO).
+
+@Controller: Especialización de @Component para indicar que una clase es un controlador web.
+
+Anotaciones de Inyección de Dependencias:
+
+@Autowired: Inyecta una dependencia automáticamente por tipo.
+
+@Qualifier: Se usa junto con @Autowired para especificar qué bean debe ser inyectado 
+            cuando hay varias opciones.
+
+@Value: Inyecta valores en propiedades desde el archivo de configuración.
+
+Anotaciones para Controladores y Mapeo de Solicitudes:
+
+@RequestMapping: Mapea una solicitud web a un método en un controlador.
+
+@GetMapping: Especifica que un método maneja solicitudes HTTP GET.
+
+@PostMapping: Especifica que un método maneja solicitudes HTTP POST.
+
+@PutMapping: Especifica que un método maneja solicitudes HTTP PUT.
+
+@DeleteMapping: Especifica que un método maneja solicitudes HTTP DELETE.
+
+@PathVariable: Extrae valores de la URL y los asigna a parámetros del método.
+
+@RequestParam: Extrae parámetros de la solicitud y los asigna a parámetros del método.
+
+Anotaciones para la Seguridad:
+
+@Secured: Define roles de seguridad necesarios para acceder a métodos específicos.
+
+@PreAuthorize: Define expresiones complejas de seguridad antes de ejecutar un método.
+
+Anotaciones para Validación:
+
+@Valid: Se usa para marcar que un objeto debe ser validado.
+
+@NotNull, @Size, @Min, @Max, @Email, etc.: Se usan para validar los campos de un objeto.
+
+Anotaciones para Manejo de Excepciones:
+
+@ExceptionHandler: Maneja excepciones específicas lanzadas por los métodos del controlador.
+
+@ControllerAdvice: Permite manejar excepciones de manera global para todos los controladores.
+
+Anotaciones para JPA y Persistencia:
+
+@Entity: Marca una clase como una entidad JPA.
+
+@Id: Indica el campo de la clave primaria en una entidad.
+
+@GeneratedValue: Especifica cómo se debe generar el valor de la clave primaria.
+
+@Table: Especifica la tabla en la base de datos a la que se debe mapear la entidad.
+
+@Column: Especifica detalles de la columna de la base de datos a la que se debe mapear un campo.
+
+Anotaciones para Transacciones:
+
+@Transactional: Gestiona la transacción de manera automática.
+
+Anotaciones para Spring Boot:
+@SpringBootApplication: Combina @Configuration, @EnableAutoConfiguration, y
+                        @ComponentScan. Es la anotación principal para una aplicación Spring Boot.
+
+@EnableAutoConfiguration: Habilita la configuración automática de Spring Boot.
+
+@ComponentScan: Escanea paquetes específicos en busca de componentes de Spring.
+
+Anotaciones para Inyección de Propiedades:
+
+@ConfigurationProperties: Permite agrupar propiedades externas en una clase de configuración.
+
+@PropertySource: Indica la fuente de propiedades.
+
+Anotaciones para Caché:
+
+@EnableCaching: Habilita la funcionalidad de caché en la aplicación.
+
+@Cacheable: Indica que el resultado de un método puede ser almacenado en caché
+
+@CacheEvict: Indica que una entrada de caché debe ser eliminada.
+
+
+

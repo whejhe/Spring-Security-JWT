@@ -1,0 +1,50 @@
+@Getter: Genera automáticamente un getter para cada campo.
+
+@Setter: Genera automáticamente un setter para cada campo.
+
+@Getter/@Setter en campo: También se pueden usar en campos individuales.
+
+Anotaciones para Constructores:
+@NoArgsConstructor: Genera un constructor sin argumentos.
+
+@AllArgsConstructor: Genera un constructor con un argumento para cada campo.
+
+@RequiredArgsConstructor: Genera un constructor con un argumento para cada campo final o con anotación @NonNull.
+
+Anotaciones para Métodos toString, equals, y hashCode:
+
+@ToString: Genera automáticamente un método toString.
+
+@EqualsAndHashCode: Genera automáticamente métodos equals y hashCode.
+
+Anotaciones para Clases de Datos:
+@Data: Combina @Getter, @Setter, @ToString, @EqualsAndHashCode, y @RequiredArgsConstructor.
+
+Otras Anotaciones Útiles:
+@NonNull: Indica que un campo no puede ser nulo.
+
+@Value: Es similar a @Data, pero marca la clase como inmutable, generando setters 
+        sólo para campos no finales y asegurando que todos los campos son finales 
+        y se requiere un constructor para todos ellos.
+
+@Builder: Proporciona un patrón de construcción de objetos.
+
+@Synchronized: Proporciona sincronización a nivel de método.
+
+@Log:   Genera un logger para la clase. Hay variantes como @Slf4j, @Log4j, @Log4j2, 
+        @CommonsLog, etc.
+
+@Cleanup: Garantiza la limpieza de recursos, como cerrar un archivo o liberar una conexión.
+
+Ejemplo Completo Usando Lombok:
+
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User {
+   private String name;
+   private String email;
+}

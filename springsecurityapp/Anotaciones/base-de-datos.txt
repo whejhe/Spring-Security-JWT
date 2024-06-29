@@ -1,0 +1,8 @@
+En postgressql
+https://www.postgresql.org/download/
+
+Name Conection = springsecurity
+Client = PostgresSQL
+Database = springsecurity
+usuario = postgres
+contraseña = root

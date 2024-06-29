@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+// import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -33,18 +33,32 @@ public class SecurityConfig {
     // @Autowired
     // AuthenticationConfiguration authenticationConfiguration;
 
+    // @Bean
+    // public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    //     return httpSecurity
+    //         .csrf(csrf -> csrf.disable())//Vulnerabilidad CSRF (Formularios)
+    //         .httpBasic(Customizer.withDefaults()) //No requiere autenticacion
+    //         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //No guarda la sesion en memoria
+    //         .authorizeHttpRequests(http -> {
+    //             // Configurar los Endpoints publicos
+    //             http.requestMatchers(HttpMethod.GET, "/auth/hello").permitAll();
+                
+    //             // Configurar los Endpoints privados
+    //             http.requestMatchers(HttpMethod.GET, "/auth/hello-secured").hasAuthority("READ");
+                
+    //             // Configurar el resto de Endpoints -  NO ESPECIFICADOS
+    //             http.anyRequest().denyAll(); // Rechaza todos los Endpoints no especificados
+    //             // http.anyRequest().authenticated(); // Comprueba que el usuario este autenticado y autorizado
+    //         })
+    //         .build();
+    // }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
             .csrf(csrf -> csrf.disable())//Vulnerabilidad CSRF (Formularios)
             .httpBasic(Customizer.withDefaults()) //No requiere autenticacion
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //No guarda la sesion en memoria
-            .authorizeHttpRequests(http -> {
-                http.requestMatchers(HttpMethod.GET, "/auth/hello").permitAll();
-                http.requestMatchers(HttpMethod.GET, "/auth/hello-secured").hasAuthority("READ");
-                http.anyRequest().denyAll();
-                // http.anyRequest().authenticated();
-            })
             .build();
     }
 
@@ -58,27 +72,8 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(userDetailsService());
+        provider.setUserDetailsService(null);
         return provider;
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        List<UserDetails> userDetailsList = new ArrayList<>();
-
-        userDetailsList.add(User.withUsername("carlos")
-        .password("1234")
-        .roles("ADMIN")
-        .authorities("READ", "CREATE")
-        .build());
-
-        userDetailsList.add(User.withUsername("pepe")
-        .password("1234")
-        .roles("USER")
-        .authorities("READ")
-        .build());
-
-        return new InMemoryUserDetailsManager(userDetailsList);
     }
 
     @Bean
