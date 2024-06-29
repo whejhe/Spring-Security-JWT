@@ -1,4 +1,10 @@
 https://start.spring.io/
 
 Dependencias:
-- 
+- Spring Web
+- Spring Data JPA
+- Validation
+- Spring Security
+- Spring Boot DevTools
+- Lombok
+- PostgreSQL Driver
